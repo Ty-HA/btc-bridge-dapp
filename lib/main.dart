@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'services/staking_service.dart';
 import 'services/babylon_bridge_service.dart';
-import 'screens/home_screen.dart';
+import 'screens/main_screen.dart';
+import 'screens/relayer_screen.dart';
+import 'theme/app_theme.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,20 +15,19 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (_) => BabylonBridgeService(),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => StakingService()),
+        ChangeNotifierProvider(create: (_) => BabylonBridgeService()),
+      ],
       child: MaterialApp(
-        title: 'BTC Bridge',
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-          brightness: Brightness.dark,
-          scaffoldBackgroundColor: const Color(0xFF1A1A1A),
-          cardTheme: CardTheme(
-            color: Colors.grey[900],
-            elevation: 8,
-          ),
-        ),
-        home: const HomeScreen(),
+        title: 'BTC Staking Monitor',
+        theme: AppTheme.getDarkTheme(),
+        initialRoute: '/',  // Définir la route initiale
+        routes: {
+          '/': (context) => const MainScreen(),  // Route principale
+          '/relayers': (context) => const RelayerScreen(),  // Route des relayers
+        },
       ),
     );
   }

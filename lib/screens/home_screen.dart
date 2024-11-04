@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
-import '../widgets/balance_card.dart';
-import '../widgets/bridge_form.dart';
-import '../widgets/transaction_history.dart';
+import '../widgets/staking_overview.dart';
+import '../widgets/rewards_chart.dart';
+import '../widgets/validator_list.dart';
+import '../widgets/performance_metrics.dart';
+import 'package:provider/provider.dart';
+import '../services/staking_service.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -10,27 +13,32 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Babylon BTC Bridge'),
+        title: const Text('BTC Staking Monitor'),
         actions: [
           IconButton(
-            icon: const Icon(Icons.account_balance_wallet),
+            icon: const Icon(Icons.refresh),
             onPressed: () {
-              // TODO: Wallet settings
+              // Refresh data
+              context.read<StakingService>().refreshData();
             },
           ),
         ],
       ),
-      body: SafeArea(
-        child: SingleChildScrollView(
-          padding: const EdgeInsets.all(16.0),
+      body: RefreshIndicator(
+        onRefresh: () => context.read<StakingService>().refreshData(),
+        child: const SingleChildScrollView(
+          physics: AlwaysScrollableScrollPhysics(),
+          padding: EdgeInsets.all(16.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: const [
-              BalanceCard(),
+            children: [
+              StakingOverview(),
               SizedBox(height: 16),
-              BridgeForm(),
+              RewardsChart(),
               SizedBox(height: 16),
-              TransactionHistory(),
+              PerformanceMetrics(),
+              SizedBox(height: 16),
+              ValidatorList(),
             ],
           ),
         ),
