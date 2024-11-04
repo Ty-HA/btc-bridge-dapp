@@ -1,17 +1,11 @@
+// lib/config/env_config.dart
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class EnvConfig {
-  static String get infuraKey => dotenv.env['INFURA_KEY'] ?? '';
-  static String get etherscanApiKey => dotenv.env['ETHERSCAN_API_KEY'] ?? '';
-  static String get environment => dotenv.env['ENVIRONMENT'] ?? 'development';
+  static String get bitcoinNetwork => dotenv.env['BITCOIN_NETWORK'] ?? 'testnet';
+  static String get bitcoinNodeUrl => dotenv.env['BITCOIN_NODE_URL'] ?? 'https://testnet.bitcoin.com/api';
+  static String get rskNodeUrl => dotenv.env['RSK_NODE_URL'] ?? 'https://public-node.testnet.rsk.co';
   
-  static String get infuraUrl => 'https://mainnet.infura.io/v3/$infuraKey';
-  
-  static bool get isDevelopment => environment == 'development';
-  
-  // Fonction de validation des variables d'environnement
-  static void validate() {
-    assert(infuraKey.isNotEmpty, 'INFURA_KEY is not set in .env file');
-    assert(etherscanApiKey.isNotEmpty, 'ETHERSCAN_API_KEY is not set in .env file');
-  }
+  static bool get isDevelopment => 
+      dotenv.env['ENVIRONMENT']?.toLowerCase() == 'development';
 }

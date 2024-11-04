@@ -1,22 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'config/env_config.dart';
+import 'services/babylon_bridge_service.dart';
 import 'screens/home_screen.dart';
-import 'services/wallet_service.dart';
 
-Future<void> main() async {
-  await dotenv.load(fileName: ".env");
-
-  if (EnvConfig.isDevelopment) {
-    EnvConfig.validate();
-  }
-  runApp(
-    ChangeNotifierProvider(
-      create: (_) => WalletService(),
-      child: const MyApp(),
-    ),
-  );
+void main() {
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -24,13 +12,21 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'BTC Bridge',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        scaffoldBackgroundColor: Colors.grey[100],
+    return ChangeNotifierProvider(
+      create: (_) => BabylonBridgeService(),
+      child: MaterialApp(
+        title: 'BTC Bridge',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+          brightness: Brightness.dark,
+          scaffoldBackgroundColor: const Color(0xFF1A1A1A),
+          cardTheme: CardTheme(
+            color: Colors.grey[900],
+            elevation: 8,
+          ),
+        ),
+        home: const HomeScreen(),
       ),
-      home: const HomeScreen(),
     );
   }
 }
