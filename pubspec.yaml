@@ -1,0 +1,22 @@
+name: btc_bridge_app
+description: A Bitcoin Cross-chain Bridge DApp
+version: 1.0.0
+
+environment:
+  sdk: '>=2.19.0 <3.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  web3dart: ^2.6.1
+  bip39: ^1.0.6
+  http: ^0.13.5
+  shared_preferences: ^2.1.0
+  provider: ^6.0.5
+  qr_flutter: ^4.1.0
+  flutter_secure_storage: ^8.0.0
+  flutter_dotenv: ^5.2.1
+  
+flutter:
+  assets:
+    - .env
