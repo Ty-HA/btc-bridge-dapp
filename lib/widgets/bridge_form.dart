@@ -37,8 +37,9 @@ class _BridgeFormState extends State<BridgeForm> {
             children: [
               Text(
                 'Bridge Bitcoin',
-                style: Theme.of(context).textTheme.titleLarge,
-              ),
+                style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                        color: Color(0xFFFF761B),
+                      ),), 
               const SizedBox(height: 24),
               Row(
                 children: [

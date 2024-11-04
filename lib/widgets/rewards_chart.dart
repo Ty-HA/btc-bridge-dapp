@@ -20,8 +20,10 @@ class RewardsChart extends StatelessWidget {
               children: [
                 Text(
                   'Rewards History',
-                  style: Theme.of(context).textTheme.headlineSmall,
-                ),
+                  style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                        color: Color(0xFFFF761B),
+                      ),), 
+                
                 const SizedBox(height: 16),
                 SizedBox(
                   height: 200,

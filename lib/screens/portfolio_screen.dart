@@ -9,7 +9,9 @@ class PortfolioScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Portfolio'),
+        title: Text('Portfolio', style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                        color: Color(0xFFFF761B),
+                      ),),
         centerTitle: true,
         elevation: 0,
       ),

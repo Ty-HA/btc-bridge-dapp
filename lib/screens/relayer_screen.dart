@@ -350,10 +350,11 @@ class RelayerScreen extends StatelessWidget {
             Text('Uptime: ${relayer['uptime']}'),
             Text('Fee: ${relayer['fee']}'),
             const SizedBox(height: 16),
-            const Text(
+            Text(
               'Performance Metrics',
-              style: TextStyle(fontWeight: FontWeight.bold),
-            ),
+              style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                        color: Color(0xFFFF761B),
+                      ),), 
             const Text('Average Response Time: 1.2s'),
             const Text('Success Rate: 99.9%'),
             const Text('Daily Transactions: 1,234'),

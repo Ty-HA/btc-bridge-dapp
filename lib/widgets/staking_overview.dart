@@ -17,7 +17,9 @@ class StakingOverview extends StatelessWidget {
               children: [
                 Text(
                   'Staking Overview',
-                  style: Theme.of(context).textTheme.headlineSmall,
+                  style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                        color: const Color(0xFFFF761B),
+                      ),
                 ),
                 const SizedBox(height: 16),
                 _buildInfoRow(

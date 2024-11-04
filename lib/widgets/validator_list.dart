@@ -18,8 +18,9 @@ class ValidatorList extends StatelessWidget {
               children: [
                 Text(
                   'Validators',
-                  style: Theme.of(context).textTheme.headlineSmall,
-                ),
+                  style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                        color: Color(0xFFFF761B),
+                      ),), 
                 const SizedBox(height: 16),
                 ListView.builder(
                   shrinkWrap: true,

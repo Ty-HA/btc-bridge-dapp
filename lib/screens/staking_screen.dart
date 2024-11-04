@@ -14,7 +14,11 @@ class StakingScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('BTC Staking'),
+        title: Text('BTC Staking',
+        style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                        color: Color(0xFFFF761B),
+                      ),),
+        
         centerTitle: true,
         elevation: 0,
         actions: [
@@ -120,8 +124,9 @@ class StakingScreen extends StatelessWidget {
           children: [
             Text(
               'Staking Options',
-              style: Theme.of(context).textTheme.titleLarge,
-            ),
+              style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                        color: Color(0xFFFF761B),
+                      ),), 
             const SizedBox(height: 16),
             ListTile(
               leading: Container(
@@ -211,8 +216,9 @@ class StakingScreen extends StatelessWidget {
             children: [
               Text(
                 'Your Rewards',
-                style: Theme.of(context).textTheme.titleLarge,
-              ),
+                style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                        color: Color(0xFFFF761B),
+                      ),), 
               const SizedBox(height: 16),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,

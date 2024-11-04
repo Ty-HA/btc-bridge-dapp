@@ -17,8 +17,9 @@ class BalanceCard extends StatelessWidget {
               children: [
                 Text(
                   'Your Balances',
-                  style: Theme.of(context).textTheme.titleLarge,
-                ),
+                 style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                        color: Color(0xFFFF761B),
+                      ),), 
                 const SizedBox(height: 16),
                 _BalanceRow(
                   icon: Icons.currency_bitcoin,

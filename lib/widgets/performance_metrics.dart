@@ -18,8 +18,9 @@ class PerformanceMetrics extends StatelessWidget {
               children: [
                 Text(
                   'Performance Metrics',
-                  style: Theme.of(context).textTheme.headlineSmall,
-                ),
+                  style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                        color: Color(0xFFFF761B),
+                      ),), 
                 const SizedBox(height: 16),
                 _buildMetricTiles(performance),
               ],

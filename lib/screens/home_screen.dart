@@ -13,7 +13,10 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('BTC Staking Monitor'),
+        title: Text('BTC Staking Monitor',
+        style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                        color: Color(0xFFFF761B),
+                      ),),  
         actions: [
           // Refresh Button
           IconButton(

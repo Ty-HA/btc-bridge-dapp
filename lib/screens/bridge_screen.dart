@@ -14,7 +14,9 @@ class BridgeScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Babylon Bridge'),
+        title: Text('Babylon Bridge', style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                        color: Color(0xFFFF761B),
+                      ),),
         actions: [
           IconButton(
             icon: const Icon(Icons.refresh),
@@ -48,8 +50,9 @@ class BridgeScreen extends StatelessWidget {
                       children: [
                         Text(
                           'Your Balances',
-                          style: Theme.of(context).textTheme.titleLarge,
-                        ),
+                          style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                        color: Color(0xFFFF761B),
+                      ),), 
                         const SizedBox(height: 16),
                         Row(
                           children: [

@@ -10,7 +10,12 @@ class SettingsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Settings'),
+        title: Text(
+          'Settings',
+          style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                color: Color(0xFFFF761B),
+              ),
+        ),
         centerTitle: true,
         elevation: 0,
       ),
@@ -110,7 +115,8 @@ class SettingsScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildSection(BuildContext context, String title, List<Widget> children) {
+  Widget _buildSection(
+      BuildContext context, String title, List<Widget> children) {
     return Card(
       elevation: 8,
       shape: RoundedRectangleBorder(
