@@ -12,10 +12,21 @@ class BridgeForm extends StatefulWidget {
 class _BridgeFormState extends State<BridgeForm> {
   final _formKey = GlobalKey<FormState>();
   final _amountController = TextEditingController();
+  final _addressController = TextEditingController();
   bool _isBridgingToBabylon = true;
+  bool _useDefaultAddress = true;
+
+  @override
+  void dispose() {
+    _amountController.dispose();
+    _addressController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
+    final service = context.watch<BabylonBridgeService>();
+    
     return Card(
       child: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -67,9 +78,46 @@ class _BridgeFormState extends State<BridgeForm> {
                   if (value == null || value.isEmpty) {
                     return 'Please enter an amount';
                   }
+                  final amount = double.tryParse(value);
+                  if (amount == null || amount <= 0) {
+                    return 'Please enter a valid amount';
+                  }
+                  if (_isBridgingToBabylon && amount > service.btcBalance) {
+                    return 'Insufficient BTC balance';
+                  }
+                  if (!_isBridgingToBabylon && amount > service.wrappedBalance) {
+                    return 'Insufficient wrapped BTC balance';
+                  }
                   return null;
                 },
               ),
+              const SizedBox(height: 16),
+              CheckboxListTile(
+                value: _useDefaultAddress,
+                onChanged: (value) => setState(() => _useDefaultAddress = value!),
+                title: const Text('Use default address'),
+                controlAffinity: ListTileControlAffinity.leading,
+              ),
+              if (!_useDefaultAddress) ...[
+                const SizedBox(height: 16),
+                TextFormField(
+                  controller: _addressController,
+                  decoration: InputDecoration(
+                    labelText: _isBridgingToBabylon 
+                      ? 'Babylon Address'
+                      : 'Bitcoin Address',
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                  ),
+                  validator: (value) {
+                    if (!_useDefaultAddress && (value == null || value.isEmpty)) {
+                      return 'Please enter a destination address';
+                    }
+                    return null;
+                  },
+                ),
+              ],
               const SizedBox(height: 24),
               ElevatedButton(
                 onPressed: _handleBridge,
@@ -95,19 +143,30 @@ class _BridgeFormState extends State<BridgeForm> {
     if (_formKey.currentState!.validate()) {
       final service = context.read<BabylonBridgeService>();
       final amount = double.parse(_amountController.text);
+      final destinationAddress = _useDefaultAddress ? null : _addressController.text;
       
       try {
         final txHash = _isBridgingToBabylon
-            ? await service.bridgeToBabylon(amount: amount)
-            : await service.bridgeFromBabylon(amount: amount);
+            ? await service.bridgeToBabylon(
+                amount: amount,
+                destinationAddress: destinationAddress,
+              )
+            : await service.bridgeFromBabylon(
+                amount: amount,
+                destinationAddress: destinationAddress,
+              );
             
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Transaction submitted: $txHash')),
-        );
+        if (mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text('Transaction submitted: $txHash')),
+          );
+        }
       } catch (e) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Error: $e')),
-        );
+        if (mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text('Error: $e')),
+          );
+        }
       }
     }
   }

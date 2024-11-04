@@ -3,6 +3,7 @@ import 'home_screen.dart';
 import 'staking_screen.dart';
 import 'portfolio_screen.dart';
 import 'settings_screen.dart';
+import 'bridge_screen.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({Key? key}) : super(key: key);
@@ -17,6 +18,7 @@ class _MainScreenState extends State<MainScreen> {
   final List<Widget> _screens = [
     const HomeScreen(),
     const StakingScreen(),
+    const BridgeScreen(),
     const PortfolioScreen(),
     const SettingsScreen(),
   ];
@@ -52,6 +54,11 @@ class _MainScreenState extends State<MainScreen> {
               icon: Icon(Icons.account_balance_outlined),
               selectedIcon: Icon(Icons.account_balance),
               label: 'Stake',
+            ),
+            NavigationDestination(
+              icon: Icon(Icons.swap_horiz_outlined),
+              selectedIcon: Icon(Icons.swap_horiz),
+              label: 'Bridge',
             ),
             NavigationDestination(
               icon: Icon(Icons.analytics_outlined),

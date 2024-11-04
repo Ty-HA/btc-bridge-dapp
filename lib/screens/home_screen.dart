@@ -15,10 +15,11 @@ class HomeScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text('BTC Staking Monitor'),
         actions: [
+          // Refresh Button
           IconButton(
             icon: const Icon(Icons.refresh),
+            tooltip: 'Refresh Data',
             onPressed: () {
-              // Refresh data
               context.read<StakingService>().refreshData();
             },
           ),
