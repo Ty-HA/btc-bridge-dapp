@@ -3,13 +3,19 @@
 **BTC-Bridge-DApp** is a decentralized application (DApp) built using **Flutter** for the frontend. It facilitates secure Bitcoin (BTC) transfers across compatible blockchains via a bridge mechanism.
 
 ##
-![Example Image](assets/images/01.jpg)
-![Example Image](assets/images/02.jpg)
-![Example Image](assets/images/03.jpg)
-![Example Image](assets/images/04.jpg)
-![Example Image](assets/images/05.jpg)
-![Example Image](assets/images/06.jpg)
-![Example Image](assets/images/07.jpg)
+<img src="assets/images/01.jpg" alt="Example Image" width="500"/>
+ 
+<img src="assets/images/02.jpg" alt="Example Image" width="500"/>
+ 
+<img src="assets/images/03.jpg" alt="Example Image" width="500"/>
+ 
+<img src="assets/images/04.jpg" alt="Example Image" width="500"/>
+ 
+<img src="assets/images/05.jpg" alt="Example Image" width="500"/>
+ 
+<img src="assets/images/06.jpg" alt="Example Image" width="500"/>
+ 
+<img src="assets/images/07.jpg" alt="Example Image" width="500"/>
 
 ## 🛠️ Features
 
